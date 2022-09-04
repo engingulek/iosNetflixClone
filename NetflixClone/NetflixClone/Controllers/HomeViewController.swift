@@ -24,6 +24,8 @@ class HomeViewController: UIViewController {
         
         homeFeedTable.delegate = self
         homeFeedTable.dataSource = self
+        
+        homeFeedTable.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450 ))
     }
     
     
@@ -35,8 +37,11 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController : UITableViewDataSource,UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 20
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     
@@ -44,6 +49,7 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifer, for: indexPath) as? CollectionViewTableViewCell else {
             return UITableViewCell()
         }
+        cell.textLabel?.text = "dsa"
         return cell
     }
     

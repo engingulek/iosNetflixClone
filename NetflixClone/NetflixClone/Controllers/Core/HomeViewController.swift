@@ -7,6 +7,16 @@
 
 import UIKit
 
+enum Sections: Int {
+    case TrengingMovies = 0
+    case TrengingTv = 1
+    case Populer = 2
+    case Upcoming = 3
+    case TopRated = 4
+    
+    
+}
+
 class HomeViewController: UIViewController {
     
     let sectionTitles : [String] = ["trending Movies","Trending Tv","Upcomig Movies","Top rated"]
@@ -32,7 +42,7 @@ class HomeViewController: UIViewController {
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homeFeedTable.tableHeaderView = headerView
         
-        getTrendMovies()
+        fetchData()
     }
     
     
@@ -59,6 +69,25 @@ class HomeViewController: UIViewController {
     
     
     private func fetchData() {
+        
+        /*APICaller.shared.getUpComingMovies { result in
+            switch result {
+            case .success(let movies):
+                print(movies[0])
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }*/
+        
+        
+        /*APICaller.shared.getTrendingTvs { result in
+            switch result {
+            case .success(let tvs):
+                print(tvs[0].original_name)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }*/
         /*APICaller.shared.getTrendingMovies { results in
             switch results {
             case .success(let movies):
@@ -100,8 +129,71 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifer, for: indexPath) as? CollectionViewTableViewCell else {
             return UITableViewCell()
         }
+        
         cell.textLabel?.text = "dsa"
         cell.backgroundColor = .black
+        switch indexPath.section {
+        case Sections.TrengingMovies.rawValue:
+            APICaller.shared.getTrendingMovies { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.TrengingTv.rawValue:
+            APICaller.shared.getTrendingTvs { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        
+        case Sections.Populer.rawValue:
+            APICaller.shared.getPopuler { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case  .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            
+        case Sections.Populer.rawValue:
+            APICaller.shared.getPopuler { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.Upcoming.rawValue:
+            APICaller.shared.getUpComingMovies { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        
+        case Sections.TopRated.rawValue:
+            APICaller.shared.getTopRated{ result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        default:
+           return UITableViewCell()
+        }
+        
         return cell
     }
     

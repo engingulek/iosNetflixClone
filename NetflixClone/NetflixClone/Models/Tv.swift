@@ -1,5 +1,5 @@
 //
-//  TrendingMoviesResponse.swift
+//  Tv.swift
 //  NetflixClone
 //
 //  Created by engin gülek on 5.09.2022.
@@ -7,15 +7,11 @@
 
 import Foundation
 
-struct TrendingMoviesResponse:Codable {
-    let results : [Movie]
+struct TrendingTvResponse : Codable{
+    let results : [Tv]
 }
 
-enum APIError : Error {
-    case failedTogetData
-}
-
-struct Movie:Codable {
+struct Tv : Codable{
     let id:Int
     let media_type : String?
     let original_name: String?
@@ -25,4 +21,5 @@ struct Movie:Codable {
     let vote_count: Int
     let release_date : String?
     let vote_average: Double
+    
 }

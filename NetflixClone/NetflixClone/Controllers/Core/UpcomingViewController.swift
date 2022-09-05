@@ -63,6 +63,7 @@ extension UpcomingViewController : UITableViewDelegate,UITableViewDataSource {
                 as? TitleTableViewCell else {return UITableViewCell()}
         let title = titles[indexPath.row]
         cell.configure(with: TitleViewModel(titleName: (title.original_title ?? title.original_name) ?? "Unknow title", posterUrl: title.poster_path ?? ""))
+        cell.backgroundColor = .black
         
         return cell
     }

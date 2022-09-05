@@ -80,6 +80,7 @@ extension SearchViewController : UITableViewDelegate,UITableViewDataSource {
         let title = titles[indexPath.row]
         let model = TitleViewModel(titleName: title.original_name ?? title.original_title ?? "Unkown Nmae", posterUrl: title.poster_path ?? "url")
         cell.configure(with: model)
+        cell.backgroundColor = .black
         return cell
     }
     

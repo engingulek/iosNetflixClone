@@ -37,68 +37,23 @@ class HomeViewController: UIViewController {
         
         homeFeedTable.delegate = self
         homeFeedTable.dataSource = self
-        configureNavbar()
+
         
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homeFeedTable.tableHeaderView = headerView
         
-        fetchData()
+  
     }
     
     
-    private func configureNavbar(){
-        var  image = UIImage(named: "logo")
-        
-        image = image?.withRenderingMode(.alwaysOriginal)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
-        navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: nil, action: nil),
-            UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
-            
-        ]
-        
-        //navigationController?.navigationBar.tintColor = .white
-        
-    }
-    
-    
+ 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds
     }
     
     
-    private func fetchData() {
-        
-        /*APICaller.shared.getUpComingMovies { result in
-            switch result {
-            case .success(let movies):
-                print(movies[0])
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }*/
-        
-        
-        /*APICaller.shared.getTrendingTvs { result in
-            switch result {
-            case .success(let tvs):
-                print(tvs[0].original_name)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }*/
-        /*APICaller.shared.getTrendingMovies { results in
-            switch results {
-            case .success(let movies):
-                print(movies)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-            
-        }*/
-        
-    }
+ 
     
  
     
@@ -193,7 +148,7 @@ extension HomeViewController : UITableViewDataSource,UITableViewDelegate {
         default:
            return UITableViewCell()
         }
-        
+       
         return cell
     }
     

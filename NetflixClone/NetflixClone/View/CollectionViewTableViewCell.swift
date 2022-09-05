@@ -15,6 +15,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         layout.itemSize = CGSize(width: 140, height: 200   )
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero,collectionViewLayout: layout)
+        collectionView.backgroundColor = .black
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         return collectionView
     }()
@@ -23,7 +24,7 @@ class CollectionViewTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .systemPink
+        contentView.backgroundColor = .black
         contentView.addSubview(collectionView)
         
         collectionView.delegate = self
